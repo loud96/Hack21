@@ -24,7 +24,7 @@ def read_file(filename):
 #upload audio/video file
 upload_response = requests.post(
    upload_endpoint,
-   headers=headers, data=read_file("/Downloads/eng.mp4")
+   headers=headers, data=read_file(<"your filepath">)
 )
 print('Audio file uploaded')
  
@@ -38,7 +38,7 @@ pprint.pprint(transcript_response.json())
 polling_response = requests.get(transcript_endpoint+"/"+transcript_response.json()['id'], headers=headers)
 filename = transcript_response.json()['id'] + '.txt'
 # if our status isn’t complete or encounters an error, sleep and then poll again
-while polling_response.json()['status'] != 'completed' or ['status'] == 'error':
+while polling_response.json()['status'] != 'completed' or polling_response.json()['status'] == 'error':
    sleep(30)
    polling_response = requests.get(transcript_endpoint+"/"+transcript_response.json()['id'], headers=headers)
    print("File is", polling_response.json()['status'])
